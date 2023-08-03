@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1691049179268",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                //arn:aws:s3:::<SourceFileBucketName>
+                "arn:aws:s3:::datatans20",
+                "arn:aws:s3:::datatans20/*"
+            ]
+        },
+        {
+            "Sid": "Stmt1691049238688",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                //arn:aws:s3:::<DestinationBucketName>
+                "arn:aws:s3:::datatans10",
+                "arn:aws:s3:::datatans10/*"
+            ]
+        }
+    ]
+}

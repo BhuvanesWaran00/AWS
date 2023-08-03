@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    //arn:aws:iam::<DestinationAWSAccountId>:root
+                    "arn:aws:iam::867196492432:root",
+                    //arn:aws:iam::<DestinationAWSAccountId>:user/<IAMUser>
+                    "arn:aws:iam::867196492432:user/bhuvaneswaran_admin"
+                ]
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                //arn:aws:s3:::<SourceFileBucketName>
+                "arn:aws:s3:::datatans20",
+                "arn:aws:s3:::datatans20/*"
+            ]
+        }
+    ]
+}
