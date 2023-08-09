@@ -87,3 +87,29 @@ There are two types of actions: <br>
 + Goto your bucket
 + Management --> Create lifecycle rule
 + Name Your Life Cycle Rule --> Select Lifecycle rule actions which you want --> Edit Action Which you want --> Create Rule 
+## Static Website Hosting
++ Create a Public & ACL Enabled bucket
++ Upload Web Files
++ Properties --> Static website hosting
+  + Static website hosting - enable
+  + Hosting type - Host a static website
+  + Index document - Index File Name
+  + Save changes
++ Copy the URL: `EX: http://datatans20.s3-website-us-east-1.amazonaws.com`
++ Permission --> Bucket policy --> Copy Paste Below Policy
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Allow_Public_Permission",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::datatans20/*"
+            //Resource": "arn:aws:s3:::datatans20/*
+        }
+    ]
+}
+```
++ Hit URL into your browser
