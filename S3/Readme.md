@@ -70,11 +70,20 @@ Reduced redundancy | Noncritical, frequently accessed data with milliseconds acc
 + For an existing bucket `open bucket --> Properties --> Edit --> Enable --> Save changes`
 ## Setup Cross-Region Replication
 + Create Two buckets in different regions
-  + Bucket 1: region - `us-east-1` \(with Source Files)
+  + Bucket 1: region - `us-east-1 ` \(with Source Files)
   + Bucket 2: region - `us-east-2` \(it's destination bucket)
 + Enable Replication in Source Bucket and add a rule
     + Goto bucket --> Management --> 
     + Goto bucket --> Management --> Replication rules \(Create replication rule) --> Name Replication rule --> click `Apply to all objects in the bucket` --> Destination \(Browse S3 \(Select target Bucket)) --> Choose path --> Enable Versioning --> In IAM Role (Select Create New Role) --> Check `Replicate objects encrypted with AWS Key Management Service (AWS KMS)` --> In `AWS KMS keys for decrypting source objects` Check the Box -->  Select `Choose from your AWS KMS keys` --> In `Available AWS KMS keys` Select Key which one is showing --> Select Storage class `one zone IA` --> save
     + Select `Yes, replicate existing objects.` --> Submit
 + Wait for 3 - 5 min then refresh your target Bucket
-
++ Now File transferred to your S3 Buckets
+## Introduction to S3 lifecycle policy
+To manage your objects so that they are stored cost-effectively throughout their lifecycle, configure their Amazon S3 Lifecycle. An S3 Lifecycle configuration is a set of rules that define actions that Amazon S3 applies to a group of objects. <br>
+There are two types of actions: <br>
++ **Transition actions** – These actions define when objects transition to another storage class.
++ **Expiration actions** - Amazon S3 deletes expired objects on your behalf.
+### Steps to Create a Life Cycle Policy
++ Goto your bucket
++ Management --> Create lifecycle rule
++ Name Your Life Cycle Rule --> Select Lifecycle rule actions which you want --> Edit Action Which you want --> Create Rule 
