@@ -1,6 +1,6 @@
 # Establishing a Connection to an Amazon EC2 Instance and Executing Linux Commands
 
-a step-by-step guide on establishing a connection to an Amazon EC2 instance and executing various Linux commands.
+A step-by-step guide on establishing a connection to an Amazon EC2 instance and executing various Linux commands.
 
 ## Prerequisites
 
