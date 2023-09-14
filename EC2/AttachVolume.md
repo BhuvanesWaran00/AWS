@@ -1,4 +1,4 @@
-![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/247f7a85-f08a-4841-88a8-8af8990b61e9)#  Attach Multiple Elastic Block Store (EBS) Volume in EC2 Instance
+#  Attach Multiple Elastic Block Store (EBS) Volume in EC2 Instance
   - You can attach multiple EBS volumes to a single instance. The volume and instance must be in the same Availability Zone.
   - Depending on the volume and instance types, you can use Multi-Attach to mount a volume to multiple instances at the same time.    
 
@@ -35,6 +35,11 @@ Before you begin, ensure you have the following:
    **lsblk**
     - Description: The lsblk command to view your available disk devices and their mount points (if applicable) to help you determine the correct device name to use.
     - Usage: `lsblk`
+    - IMG 1: without new volume
+      
+      ![Screenshot 2023-09-14 193841](https://github.com/BhuvanesWaran00/AWS/assets/117109051/c8df36af-e1da-42b1-a3af-1687e9a10128)
+    
+    - IMG 2: with new volume
       
       ![lsblk](https://github.com/BhuvanesWaran00/AWS/assets/117109051/83a3f95a-ec8f-447f-a54f-5939ef6e7b00)
       
@@ -42,10 +47,11 @@ Before you begin, ensure you have the following:
     - Description:
         - file -s command to get information about a specific device, such as its file system type.
         - If the output shows simple data, as in the following example output, there is no file system on the device
-    - Usage: `sudo file -s /dev/<FileSystemName>`
+    - Usage: `file -s /dev/<FileSystemName>`
     - IMG 1: already booted file system<br>
     
       ![Screenshot 2023-09-14 140236](https://github.com/BhuvanesWaran00/AWS/assets/117109051/7443c196-bdf4-40dc-951b-0f746f05d02d)
+      
     - IMG 2: newly added file system file system|volume<br>
     
       ![Screenshot 2023-09-14 140540](https://github.com/BhuvanesWaran00/AWS/assets/117109051/213ebe81-b914-4151-84db-b0584afcc1e8)
@@ -59,25 +65,51 @@ Before you begin, ensure you have the following:
   **mkfs -t**
     - Description:  Create a file system on the volume.
       - **Warning:** Do not use this command if you're mounting a volume that already has data on it 
-    - Usage: `mkfs -t xfs /dev/xvdf`
-      
-      ![Screenshot 2023-09-14 141714](https://github.com/BhuvanesWaran00/AWS/assets/117109051/8fc0afb3-9099-4c5f-a86e-5cf85e9c2448)
+    - Usage:
+      - `mkfs -t xfs /dev/xvdf` || `mkfs -t ext4 /dev/xvdf`
+
+        ![Screenshot 2023-09-14 194026](https://github.com/BhuvanesWaran00/AWS/assets/117109051/16a2368d-953d-4588-84dd-2ce751f97e44)
+
       
   **mkdir**
-    - Description: Create directory
+    - Description: Create a directory
     - Usage: `mkdir <DirName>`
       
       ![Screenshot 2023-09-14 142354](https://github.com/BhuvanesWaran00/AWS/assets/117109051/2652520a-71ae-4f2b-ab92-3273a89478a7)
   
   **mount**
     - Description: Mount the volume or partition at the mount point directory you created in the previous step.
-    - Usage: `sudo mount /dev/xvdf /<DirName>`
+    - Usage: `mount /dev/xvdf /<DirName>`
       
        ![Screenshot 2023-09-14 143404](https://github.com/BhuvanesWaran00/AWS/assets/117109051/dc3d639a-908d-4442-be9b-a76e3e129fe7)
       
-- Now You can store any file in that directory  It will store in a new volume 
-    
-   
+- Now You can store any file in that directory  It will be stored in a new volume
+
+  ![Screenshot 2023-09-14 200821](https://github.com/BhuvanesWaran00/AWS/assets/117109051/2bb43436-ad53-4481-a9c2-2eeb357ddcc3)
   
 
+ ## Unmount and detach volume in Linux
+ 
+ - Unmount
+  - Description: unmount the volume or partition at the mount point directory.
+  - Usage: `umount /dev/xvdf`
     
+    ![Screenshot 2023-09-14 201022](https://github.com/BhuvanesWaran00/AWS/assets/117109051/5b034221-5df5-47fb-9387-5bdd29776251)
+
+- detach Volume
+  - Select the volume
+  - And In actions select Detach Volume
+  - now Volume state change available
+
+## Attach volume with different Instance
+
+After attaching volume with instance Follow the Below commands
+```
+# lsblk -f
+# mkdir dir
+# mount /dev/xvdf dir/
+```
+
+
+![Screenshot 2023-09-14 200106](https://github.com/BhuvanesWaran00/AWS/assets/117109051/5663eda4-e3ad-47c0-9020-80e2320dde88)
+
