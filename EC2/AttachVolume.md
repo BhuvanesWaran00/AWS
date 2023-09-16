@@ -27,7 +27,7 @@ Before you begin, ensure you have the following:
 - Click Attach Volume
 - Now see volume state it shows: In-use
 
-  ![Screenshot 2023-09-14 131047](https://github.com/BhuvanesWaran00/AWS/assets/117109051/81b6c59b-4e2b-4d27-b5a1-2c413e33a641)
+  ![Screenshot 2023-09-14 131047](https://github.com/Bhuvanesan00/AWS/assets/117109051/81b6c59b-4e2b-4d27-b5a1-2c413e33a641)
 
 ### Format and mount an attached volume in Linux
 - Log in to your instance in the terminal
@@ -113,3 +113,15 @@ After attaching volume with instance Follow the Below commands
 
 ![Screenshot 2023-09-14 200106](https://github.com/BhuvanesWaran00/AWS/assets/117109051/5663eda4-e3ad-47c0-9020-80e2320dde88)
 
+
+## Enable multi-attached Volume
+- Volume --> create Volumes
+- in Volume type Select Provisioned IOPS SSD (io1 || io2)
+- in Amazon EBS Multi-Attach --> Enable Multi-Attach
+
+  ![Screenshot 2023-09-16 120032](https://github.com/BhuvanesWaran00/AWS/assets/117109051/0ab06753-c24d-4306-a855-6e206f7beea6)
+
+- **Warning:** If you're using a free-tier account you are not able to attach with t2.micro instance type
+
+  ![Screenshot 2023-09-16 120305](https://github.com/BhuvanesWaran00/AWS/assets/117109051/29104f48-dabe-402a-9bf9-bbd80d1a8d45)
+  
