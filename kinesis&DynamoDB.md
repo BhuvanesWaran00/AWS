@@ -45,9 +45,46 @@ The diagram outlines capturing, transforming, and delivering streaming data usin
 ### Testing Firehose
   - Expand the Test with demo data --> Start sending demo data
     ![Screenshot 2023-09-20 124334](https://github.com/BhuvanesWaran00/AWS/assets/117109051/b421f6c6-744e-4aa4-a762-e9ef4bd8cc4e)
-  - Now open your bucket and verify data
+  - Now open your bucket and verify the data
     ![Screenshot 2023-09-20 124820](https://github.com/BhuvanesWaran00/AWS/assets/117109051/dd67592b-1f2a-4d2c-948b-1f4b197aa3c2)
   - Stop sending demo data
+
+## Amazon DynamoDB
+Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale. DynamoDB offers built-in security, continuous backups, automated multi-region replication, in-memory caching, and data import and export tools.
+   ![DynamoDB](https://github.com/BhuvanesWaran00/AWS/assets/117109051/747747e0-b4d9-46d5-a828-cf0b9e0b1a7f)
+
+The diagram displays the fundamental features of Amazon DynamoDB and its integrations with other AWS services, arranged in three sections from left to right.
+
+  1. The DynamoDB service icon is displayed in a box labeled"Configure Key Features."The box contains six boxes, each with three rows, representing features such as NoSQL Workbench, encryption at rest, on-demand capacity mode, Global Tables, point-in-time recovery, and PartiQL supports. Additional DynamoDB features are listed below each box, with a sentence below the "Configure Key Features" heading.
+
+  2. The second section features a magnifying glass displaying data blocks, with a left arrow representing DynamoDB data and a right arrow representing data from AWS services. The headline "Export, Analyze, Stream Data" explains the functions available when integrating with other AWS services.
+  
+  3. The third section contains five boxes representing DynamoDB's integrations: Amazon S3, AWS Glue Elastic Views, Amazon Kinesis Data Streams, AWS CloudTrail, and Amazon Cloudwatch, each containing a different service.
+
+### Configure Table in DynamoDB
+1. DynamoDB Dashboard --> Create table
+    1. Table name: give a name of your choice.
+    2. Partition key: give a name and type related to your table.
+       ![Screenshot 2023-09-20 131927](https://github.com/BhuvanesWaran00/AWS/assets/117109051/78642ad9-5fb0-416f-b840-5ba14bfe7cb9)
+2. Create table
+   ![Screenshot 2023-09-20 132305](https://github.com/BhuvanesWaran00/AWS/assets/117109051/f6e5d65f-efad-403a-aead-ab0855af24f5)
+3. Explore table items --> Create item
+   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/1327a59d-003b-4993-9d43-c3a431974f48)
+4. Enter table data if you want to add an Attribute name
+   - click Add a new attribute
+   - Select Type enter details
+     ![Screenshot 2023-09-20 134416](https://github.com/BhuvanesWaran00/AWS/assets/117109051/11868574-d10b-4938-b4b5-8669b754644f)
+5. Create item
+   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/c7a9e2aa-4e67-4bf3-af3e-51ba53493fe4)
+### Fetch Data using Scan and Query
+- Select the “Scan” option (which is in the left upper corner). --> Select Table --> Run
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/e7e5017f-6942-41a1-ba77-796f364f478a)
+- Select the “Query” option (which is in the left upper corner). --> Select Table --> enter data which you want --> Run
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/92cc493e-8c21-4e25-a631-bef7dc9b88ed)
+
+
+
+
 
 
 
