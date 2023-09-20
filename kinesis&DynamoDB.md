@@ -82,16 +82,28 @@ The diagram displays the fundamental features of Amazon DynamoDB and its integra
 - Select the “Query” option (which is in the left upper corner). --> Select Table --> enter data which you want --> Run
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/92cc493e-8c21-4e25-a631-bef7dc9b88ed)
 
+## Real-time Analytics and Data Streaming
 
+### Analytics
+1. Real-time analytics processes data as it's generated, enabling swift decision-making.
+2. Streaming data from sources like IoT devices is a key input for real-time analytics.
+3. Low latency is essential, with data analyzed within milliseconds or seconds.
+4. Common use cases include fraud detection, e-commerce personalization, and patient monitoring.
+5. Stream processing frameworks like Apache Kafka and Spark are used for data processing.
+6. Visualization through dashboards offers real-time insights into performance metrics.
+7. Machine learning models enhance analytics by predicting trends and anomalies.
+8. Scalability and data quality are crucial for efficient and accurate analysis.
+9. Security measures protect sensitive data in real-time analytics systems.
+10. Ongoing monitoring and optimization ensure the system's effectiveness over time.
 
-
-
-
-
-
-
-
-
- 
-
-
+### Data Streaming
+1. Data streaming is the continuous flow of real-time or near-real-time data from diverse sources.
+2. It uses protocols like MQTT, Apache Kafka, or HTTP/HTTPS for data transmission.
+3. Data can be structured, unstructured, or semi-structured, making it versatile.
+4. Stream processing frameworks enable real-time transformations and analytics.
+5. Key applications include IoT, fraud detection, and social media monitoring.
+6. Scalability is crucial to handle high data volumes efficiently.
+7. Data quality and low latency are essential for accurate analysis.
+8. Integration with databases and analytics engines enhances insights.
+9. Fault tolerance and cost management are important considerations.
+10. Data streaming empowers organizations to make informed decisions in real time.
