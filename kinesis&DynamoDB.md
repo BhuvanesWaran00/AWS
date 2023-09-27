@@ -39,7 +39,7 @@ The diagram outlines capturing, transforming, and delivering streaming data usin
     ![Screenshot 2023-09-20 122446](https://github.com/BhuvanesWaran00/AWS/assets/117109051/e090cbd9-b108-42b5-a23a-223fe42a36a0)
   - Advanced settings --> Create or update the IAM role.
     ![Screenshot 2023-09-20 122456](https://github.com/BhuvanesWaran00/AWS/assets/117109051/a796b839-c1f7-48dd-88e7-5910f34b1f2a)
-  - Create a delivery stream (It will take si=ome minutes)
+  - Create a delivery stream (It will take some minutes)
     ![Screenshot 2023-09-20 123933](https://github.com/BhuvanesWaran00/AWS/assets/117109051/a2f45ddc-9fff-4ab8-89cd-3eb7e84a9193)
     
 ### Testing Firehose
