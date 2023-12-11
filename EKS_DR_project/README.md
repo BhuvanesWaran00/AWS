@@ -40,10 +40,51 @@ The EKS Disaster Recovery project ensures the continuity of Amazon EKS Kubernete
 - Launch instances
 - AMI: Amazon Linux
 - select Key pair
-- 
+- Advanced details --> User data --> type below script
+```
+#!/bin/bash
+yum update -y
+yum install python3 mariadb105 pip git -y
+mkdir app
+cd app
+git clone https://github.com/BhuvanesWaran00/AWS.git
+mv AWS/EKS_DR_project/* .
+rm -rf AWS/
+chmod +x docker_install_AL.sh k8s_ins.sh
+./docker_install_AL.sh
+./k8s_ins.sh
+```
+- login Instance
+- view web files at `cd /app` `ls`
+  ![Web Files](https://github.com/BhuvanesWaran00/AWS/assets/117109051/12239974-0feb-43c6-8973-e96ea64d6c4d)
+- For server identification `cd templates/` `vi registration.html`<br>
+  change your region name || If you don't want to delete that line
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/8fa68b00-d1d1-4a8a-90af-ad371eab7341)
+- AWS CLI Configuration || Prerequisite (IAM user access & secret keys with required Permissions)
+  ```
+  aws configure
+  # enter Access Key ID
+  # enter Secret Access Key
+  # enter region name
+  # enter output format
+  ```
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/a2502d19-e114-4590-abff-74225be038fd)
+- **EKS Cluster & Nodegroup setup**
+  ```
+  # create cluster
+  eksctl create cluster --version=1.27 --name=cluster --nodes=1 --managed --region=<region_code> --zones <AZ1>,<AZ2> --node-type t2.micro --asg-access
+  # create nodegroup
+  eksctl create nodegroup --cluster=cluster --managed --region=<region_code> --spot --name=spot-node-group-2vcpu-8gb --instance-types=t2.small,t2.micro,t2.medium --nodes-min=1 --nodes-max=1 --asg-access
+  ```
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/bc742a11-d86a-4da6-a74c-18f376572040)
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/793230fc-be67-45e6-9521-31c5ce9fc30d)
+
+
+
+
 ### RDS Setup
 - RDS creates a database
-- Engine options : MySQL
+- Engine options: MySQL
 - 
 
 
