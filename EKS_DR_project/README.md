@@ -79,6 +79,8 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/bc742a11-d86a-4da6-a74c-18f376572040)
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/793230fc-be67-45e6-9521-31c5ce9fc30d)
 
+- **Do the same process on the secondary region also**
+
 
 
 
