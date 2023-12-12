@@ -166,3 +166,39 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/0f3d86e5-9e21-4dcb-82a8-66fa09781d43)
 
 - **Do the same process on the secondary region also**
+
+### Pod Creation
+
+- change open deployment.yaml `vi /app/deployment.yaml`
+- replace your image Url
+  
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/36864e0c-38fc-4d33-ac1b-5a5363dcfe0f)
+  
+- create deployment and service 
+  ```
+  cd /app
+  sudo kubectl apply -f deployment.yaml
+  sudo kubectl apply -f service.yaml
+  ```
+- check node, deployment, service, pods
+  ```
+  kubectl get node -o wide
+  kubectl get deployment -o wide
+  kubectl get service -o wide
+  kubectl get pods -o wide
+  ```
+
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/2c83393a-f46b-408b-bf10-d25edaa16ee6)
+  
+- add Port:30007 at Security Group eks-cluster-sg-cluster
+  
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/57a86b8e-00b4-4750-9737-276b71e01efd)
+
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/ce911734-484d-4b4c-a94b-6df47597cff7)
+
+- **Do the same process on the secondary region also**
+
+### Atach Application Load Balancer
+
+
+
