@@ -39,7 +39,7 @@ The EKS Disaster Recovery project ensures the continuity of Amazon EKS Kubernete
 ### EC2 Setup
 - Launch instances
 - AMI: Amazon Linux
-- tag: main
+- tag: master
 - select Key pair
 - Advanced details --> User data --> type below script
 ```
@@ -76,7 +76,7 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/bc742a11-d86a-4da6-a74c-18f376572040)
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/793230fc-be67-45e6-9521-31c5ce9fc30d)
   ![Screenshot 2023-12-12 104825](https://github.com/BhuvanesWaran00/AWS/assets/117109051/1b7a3b80-e102-46da-a20b-a897e578f705)
-- after this step select the main instance
+- after this step select the master instance
   - Actions --> Image and Templates --> Launch more like this
   - Select VPC:**eksctl-cluster-cluster/VPC** and **public subnet**
   - Terminate old Instance
@@ -86,6 +86,21 @@ chmod +x docker_install_AL.sh k8s_ins.sh
 - For server identification `cd templates/` `vi registration.html`<br>
   change your region name || If you don't want to delete that line
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/8fa68b00-d1d1-4a8a-90af-ad371eab7341)
+- cluster config with kubernetes
+  ```
+  aws configure
+  # enter Access Key ID
+  # enter Secret Access Key
+  # enter region name
+  # enter output format
+  
+  aws eks update-kubeconfig --region <region_code> --name <cluster_name>
+
+  # Test your configuration, with the following command:
+  kubectl get svc
+  ```
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/24b63d5e-893a-40d1-abab-eef55bdd126e)
+
 - **Do the same process on the secondary region also**
 
 ### RDS Setup
@@ -97,7 +112,8 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   ![Screenshot 2023-12-12 110143](https://github.com/BhuvanesWaran00/AWS/assets/117109051/0ec6e2fc-dfb7-413f-be3c-094efaf6463f)
 
 - RDS takes 5 - 10 mins for creation
-- log on to the instance main
+- actions --> Set up EC2 connection (instance: master) --> continue --> setup
+- log on to the instance master
 - add environmental variables
   ```
   echo 'export DB_HOST="eks.cnwgdt8jxjvf.ap-northeast-2.rds.amazonaws.com"' >> ~/.bashrc
@@ -118,4 +134,30 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   Source database.sql
   exit
   ```
-- add data into table `python3 insertLaptops.py`
+  
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/0603033c-e44b-4889-9a9d-3c61374a7bd7)
+
+- add data to the table
+  ```python
+  pip install -r requirements.txt
+  python3 insertLaptops.py
+  ```
+
+### ECR Setup
+  ```
+  # create ECR Repo
+  aws ecr create-repository --repository-name eks_dr_project --region <region_code>
+
+  # docker login
+  aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
+
+  # Build Docker image
+  docker build -t eks_dr_project .
+
+  # tag a image
+  docker tag eks_dr_project:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/eks_dr_project:latest
+
+  #  push the image to repository
+  docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/eks_dr_project:latest
+  ```
+- **Do the same process on the secondary region also**
