@@ -142,7 +142,10 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   pip install -r requirements.txt
   python3 insertLaptops.py
   ```
+- configure Dockerfile `vi /app/Dockerfile` to replace RDS required data
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/41c819bd-f15e-47e4-8a6e-5a05f796f4b1)
 
+- Action --> Create read replica --> Select DR region
 ### ECR Setup
   ```
   # create ECR Repo
@@ -160,4 +163,6 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   #  push the image to repository
   docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/eks_dr_project:latest
   ```
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/0f3d86e5-9e21-4dcb-82a8-66fa09781d43)
+
 - **Do the same process on the secondary region also**
