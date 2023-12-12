@@ -114,7 +114,7 @@ chmod +x docker_install_AL.sh k8s_ins.sh
 - RDS takes 5 - 10 mins for creation
 - actions --> Set up EC2 connection (instance: master) --> continue --> setup
 - log on to the instance master
-- add environmental variables
+- add environmental variables (add dr environment also with read replica endpoint)
   ```
   echo 'export DB_HOST="eks.cnwgdt8jxjvf.ap-northeast-2.rds.amazonaws.com"' >> ~/.bashrc
   echo 'export DB_USER="root"' >> ~/.bashrc
@@ -142,7 +142,7 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   pip install -r requirements.txt
   python3 insertLaptops.py
   ```
-- configure Dockerfile `vi /app/Dockerfile` to replace RDS required data
+- configure Dockerfile `vi /app/Dockerfile` to replace RDS required data ( in dr environment also with read replica endpoint)
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/41c819bd-f15e-47e4-8a6e-5a05f796f4b1)
 
 - Action --> Create read replica --> Select DR region
