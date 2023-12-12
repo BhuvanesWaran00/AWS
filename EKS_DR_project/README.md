@@ -39,6 +39,7 @@ The EKS Disaster Recovery project ensures the continuity of Amazon EKS Kubernete
 ### EC2 Setup
 - Launch instances
 - AMI: Amazon Linux
+- tag: main
 - select Key pair
 - Advanced details --> User data --> type below script
 ```
@@ -55,11 +56,6 @@ chmod +x docker_install_AL.sh k8s_ins.sh
 ./k8s_ins.sh
 ```
 - login Instance
-- view web files at `cd /app` `ls`
-  ![Web Files](https://github.com/BhuvanesWaran00/AWS/assets/117109051/12239974-0feb-43c6-8973-e96ea64d6c4d)
-- For server identification `cd templates/` `vi registration.html`<br>
-  change your region name || If you don't want to delete that line
-  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/8fa68b00-d1d1-4a8a-90af-ad371eab7341)
 - AWS CLI Configuration || Prerequisite (IAM user access & secret keys with required Permissions)
   ```
   aws configure
@@ -70,6 +66,7 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   ```
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/a2502d19-e114-4590-abff-74225be038fd)
 - **EKS Cluster & Nodegroup setup**
+  - in this creates new VPC, Subnets, RT, IGW, NATGW, ASG by default
   ```
   # create cluster
   eksctl create cluster --version=1.27 --name=cluster --nodes=1 --managed --region=<region_code> --zones <AZ1>,<AZ2> --node-type t2.micro --asg-access
@@ -78,15 +75,47 @@ chmod +x docker_install_AL.sh k8s_ins.sh
   ```
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/bc742a11-d86a-4da6-a74c-18f376572040)
   ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/793230fc-be67-45e6-9521-31c5ce9fc30d)
-
+  ![Screenshot 2023-12-12 104825](https://github.com/BhuvanesWaran00/AWS/assets/117109051/1b7a3b80-e102-46da-a20b-a897e578f705)
+- after this step select the main instance
+  - Actions --> Image and Templates --> Launch more like this
+  - Select VPC:**eksctl-cluster-cluster/VPC** and **public subnet**
+  - Terminate old Instance
+- login Instance
+- view web files at `cd /app` `ls`
+  ![Web Files](https://github.com/BhuvanesWaran00/AWS/assets/117109051/12239974-0feb-43c6-8973-e96ea64d6c4d)
+- For server identification `cd templates/` `vi registration.html`<br>
+  change your region name || If you don't want to delete that line
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/8fa68b00-d1d1-4a8a-90af-ad371eab7341)
 - **Do the same process on the secondary region also**
-
-
-
 
 ### RDS Setup
 - RDS creates a database
 - Engine options: MySQL
-- 
+- Mention DB instance identifier, Master username, Master password
+- Select  VPC:**eksctl-cluster-cluster/VPC**
+  
+  ![Screenshot 2023-12-12 110143](https://github.com/BhuvanesWaran00/AWS/assets/117109051/0ec6e2fc-dfb7-413f-be3c-094efaf6463f)
 
+- RDS takes 5 - 10 mins for creation
+- log on to the instance main
+- add environmental variables
+  ```
+  echo 'export DB_HOST="eks.cnwgdt8jxjvf.ap-northeast-2.rds.amazonaws.com"' >> ~/.bashrc
+  echo 'export DB_USER="root"' >> ~/.bashrc
+  echo 'export DB_PASSWORD="Bh101299"' >> ~/.bashrc
+  echo 'export DB_NAME="userdata"' >> ~/.bashrc
+  source ~/.bashrc
+  ```
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/f79b3827-2a00-44ed-ad5d-9afb6cb81fdd)
 
+- login MySQL
+  ```
+  mysql -h $DB_HOST -u $DB_USER -P 3306 -p
+  # Enter Your Password
+  ```
+- create database
+  ```sql
+  Source database.sql
+  exit
+  ```
+- add data into table `python3 insertLaptops.py`
