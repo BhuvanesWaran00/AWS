@@ -199,6 +199,25 @@ chmod +x docker_install_AL.sh k8s_ins.sh
 - **Do the same process on the secondary region also**
 
 ### Atach Application Load Balancer
+- **Target group Creation**
+  - Choose a target type: Instances
+  - Protocol: http
+  - Port: 30007
+  - VPC: eksctl-cluster-cluster/VPC
+  - next --> Create target group
+- **Load Balancer Creation**
+  - Load balancer types: Application Load Balancer
+  - VPC: eksctl-cluster-cluster/VPC
+  - Mappings: a,b,c
+  - select target group
+  - Create load balancer
+- **Attach with Auto Scaling Groups**
+  - select: eks-spot-node-group-2vcpu-8gb
+  - Load balancing --> edit --> select a target group
+    
+    ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/febe71c8-e807-4b47-84f9-5f62e2490b00)
 
+![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/3e0b0b6c-01f9-4e53-a717-ba26f3ffa2f5)
 
+![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/eebead5d-0ac0-4095-a3ca-6fda3f0662be)
 
