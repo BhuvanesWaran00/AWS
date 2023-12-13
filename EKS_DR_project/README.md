@@ -242,4 +242,10 @@ chmod +x docker_install_AL.sh k8s_ins.sh
 
 - now hit your dns name in your browser
 ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/eebead5d-0ac0-4095-a3ca-6fda3f0662be)
+### Failover check
+- just delete the primary region load balancer
+- wait for few seconds
+- then refresh the browser tab
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/b0bc380c-53fd-4910-92ea-96671410a62b)
+
 
