@@ -221,6 +221,25 @@ chmod +x docker_install_AL.sh k8s_ins.sh
     
     ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/febe71c8-e807-4b47-84f9-5f62e2490b00)
 ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/3e0b0b6c-01f9-4e53-a717-ba26f3ffa2f5)
+### Route 53 Configuration
+- create Two health check for each region
+- create hosted zone with your Domain name
+- create record --> enable Alias
+- Choose endpoint: Alias to Application and Classic Load Balancer
+- choose your primary region And load balancer
+- Routing policy: Failover
+- Failover record type: Primary
+- select health check ID
+- Add another record
+- enable Alias
+- Choose endpoint: Alias to Application and Classic Load Balancer
+- choose your Secondary region And load balancer
+- Routing policy: Failover
+- Failover record type: Secondary
+- select health check ID
+- Create records
+  ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/a65d3950-bcba-4084-8b01-d554d4e02669)
 
+- now hit your dns name in your browser
 ![image](https://github.com/BhuvanesWaran00/AWS/assets/117109051/eebead5d-0ac0-4095-a3ca-6fda3f0662be)
 
